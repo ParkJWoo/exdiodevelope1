@@ -1,0 +1,29 @@
+using UnityEngine;
+using System.Collections;
+
+public class Typewriter : MonoBehaviour
+{
+    private const float WAIT_TIME = 0.3f;
+
+    private float waitTimer = 0.0f;
+    private string wholeText = "This is a simple text.";
+    private string typewriterText = "";
+    private int currentIndex = 0;
+
+    void Update()
+    {
+        waitTimer += Time.deltaTime;
+
+        if (waitTimer > WAIT_TIME && currentIndex < wholeText.Length) /
+        {
+            typewriterText += wholeText[currentIndex];
+            waitTimer = 0.0f;
+            ++currentIndex;
+        }
+    }
+
+    void OnGUI()
+    {
+        GUI.TextArea(new Rect(0.0f, 0.0f, 400.0f, 200.0f), typewriterText);
+    }
+}
