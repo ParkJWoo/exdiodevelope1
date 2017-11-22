@@ -24,6 +24,6 @@ public class Typewriter : MonoBehaviour
 
     void OnGUI()
     {
-        GUI.TextArea(new Rect(0.0f, 0.0f, 400.0f, 200.0f), typewriterText);
-    }
+        GUI.TextArea(new Rect(0.0f, 0.0f, 400.0f, 200.0f), typewriterText); // position(0,0) , scale(400,200)
+  (  }
 }
