@@ -1,0 +1,7 @@
+void Awake()
+{
+Screen.sleepTimeout = SleepTimeout.NeverSleep 
+
+Screen.SetResolution.(Screen.width,(Screen.width/4)*3,True) // 4 : 3 ∫Ò¿≤
+
+} 
