@@ -17,10 +17,35 @@ public class PlayerInteract : MonoBehaviour {
             if(currentInterObjScript.inventory)
             {
                 inventory.AddItem(currentInterObj);
+                
             }
+            
 
-            //오브젝트랑 무언가를 함
-            currentInterObj.SendMessage("DoInteraction"); //item.Send~~로 해도 되는듯
+            //오브젝트가 opened인지 체크
+            if (currentInterObjScript.openable)
+            {
+                //오브젝트가 locked인지 체크
+                if(currentInterObjScript.locked)
+                {
+                    //우리가 잠금을 풀기위해 필요한 오브젝트를 갖고있는지 체크하기위함
+                    //필요한 아이템을 우리 인벤토리에서 찾아본다 - 찾으면 잠금을 품
+                    if(inventory.FindItem (currentInterObjScript.itemNeeded))
+                    {
+                        //필요한 아이템을 찾는다
+                        currentInterObjScript.locked = false;
+                        Debug.Log(currentInterObj.name + " was unlocked");
+                    }
+                    else
+                    {
+                        Debug.Log(currentInterObj.name + " was not unlocked");
+                    }
+                }
+                else
+                {
+                    //오브젝트가 안잠겼을 때 - 오브젝트를 연다.
+                    Debug.Log(currentInterObj.name + " is unlocked");
+                }
+            }
         }
     }
 

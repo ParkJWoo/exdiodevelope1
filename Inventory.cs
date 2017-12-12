@@ -17,6 +17,7 @@ public class Inventory : MonoBehaviour {
                 inventory[i] = item;
                 Debug.Log(item.name + " was added");
                 itemAdded = true;
+                item.SendMessage("DoInteraction"); //item.Send~~로 해도 되는듯
                 break;
             }
         }
@@ -26,5 +27,19 @@ public class Inventory : MonoBehaviour {
         {
             Debug.Log("Inventory Full - Item Not Added");
         }
+    }
+
+    public bool FindItem(GameObject item)
+    {
+        for(int i = 0; i < inventory.Length; i++)
+        {
+            if(inventory [i] == item)
+            {
+                //아이템을 찾는다
+                return true;
+            }
+        }
+        //아이템을 못찾았을시
+        return false;
     }
 }
