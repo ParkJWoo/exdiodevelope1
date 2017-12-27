@@ -11,7 +11,7 @@ public class PlayerInteract : MonoBehaviour {
 
     void Update()
     {
-        if(Input.GetButtonDown ("Interact") && currentInterObj)
+        if(Input.GetMouseButtonDown(0) && currentInterObj)
         {
             //인벤토리에 저장되었나 보기위해 확인함
             if(currentInterObjScript.inventory)
@@ -20,7 +20,6 @@ public class PlayerInteract : MonoBehaviour {
                 
             }
             
-
             //오브젝트가 opened인지 체크
             if (currentInterObjScript.openable)
             {
@@ -44,6 +43,7 @@ public class PlayerInteract : MonoBehaviour {
                 {
                     //오브젝트가 안잠겼을 때 - 오브젝트를 연다.
                     Debug.Log(currentInterObj.name + " is unlocked");
+                    
                 }
             }
         }
