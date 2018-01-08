@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SETACTIVE : MonoBehaviour
 {
-  int c = 0;
+  public int c = 0;
 
 
 
@@ -28,13 +28,17 @@ public class SETACTIVE : MonoBehaviour
         if (c % 2 == 0)
         {
             GameObject.Find("esc").SetActive(false);
+            Time.timeScale = 1.0f;
         }
  
 
          if (c % 2 == 1) { 
 
 
- GameObject.Find("ugotmemother").transform.Find("esc").gameObject.SetActive(true);
+           GameObject.Find("ugotmemother").transform.Find("esc").gameObject.SetActive(true);
+
+            Time.timeScale = 0.0f;
+
 
         }
        
