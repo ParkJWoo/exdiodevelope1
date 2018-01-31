@@ -1,0 +1,5 @@
+씬 3이 시작됨 -> load 게임오브젝트에 isLoaded를 체크 (true면 player위치, 인벤토리, 
+게임상태 가져옴 ->isLoaded를 false로 바꿈 / false면 아무것도 하지 않음)
+
+public GameObject PlayerRef;
+
