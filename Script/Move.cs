@@ -19,7 +19,7 @@ public class Move : MonoBehaviour {
             target = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             target.y = transform.position.y;
         }
-
+        //스터디 참조
         if (Input.GetMouseButton(0))
         {
             target = Camera.main.ScreenToWorldPoint(Input.mousePosition);

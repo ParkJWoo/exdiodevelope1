@@ -4,11 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class Door : MonoBehaviour {
-
-	// Use this for initialization
-	void Start () {
-		
-	}
+    
     void OnTriggerStay2D(Collider2D col)
     {
         if (col.gameObject.tag == "player") // 캐릭터 이름 태그할 것.
