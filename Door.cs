@@ -5,6 +5,7 @@ using UnityEngine;
 public class Door : MonoBehaviour
 {
     private GameObject target = null;
+    private GameObject target2;
 
     public float movement = 2.0f;
     public float doormovement = 1.0f;
@@ -42,13 +43,29 @@ public class Door : MonoBehaviour
         if (collision.tag == "Player")
         {
             Debug.Log("We arrived at the door");
-            if(Input.GetMouseButtonDown(0))
+            if(Input.GetMouseButton(0))
             {
-                follower.GetComponent<Follow>().enabled = false;    //남주가 움직이지 않는다
+                CastRay();
+                if(target2 == this.gameObject)
+                {
+                    follower.GetComponent<Follow>().enabled = false;    //남주가 움직이지 않는다
+                }
             }
-            
         }
     }
 
-   
+    void CastRay()
+    {
+        target2 = null;
+        Vector2 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+
+        Ray2D ray = new Ray2D(pos, Vector2.zero);
+        RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction);
+
+        if(hit.collider != null)
+        {
+            Debug.Log(hit.collider.name);
+            target2 = hit.collider.gameObject;
+        }
+    }
 }
