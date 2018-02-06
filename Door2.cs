@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class Door2 : MonoBehaviour {
 
-    private GameObject door1, follower;
+    private GameObject door1, follower, target;
 
 	// Use this for initialization
 	void Start () {
-        door1 = GameObject.Find("문");   //사슬문
+        door1 = GameObject.Find("문");
         follower = GameObject.Find("남주");
 	}
 	
@@ -17,21 +17,43 @@ public class Door2 : MonoBehaviour {
 		
 	}
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerStay2D(Collider2D collision)
     {
         if(collision.tag == "Player")
         {
-            if(follower.GetComponent<Follow>().enabled == false)
+            Debug.Log("door1 도착");
+            if(Input.GetMouseButton(0))
             {
-                Debug.Log("door1 open");
-                door1.GetComponent<Door>().transform.position = new Vector2(43f, 0.5f);
-                Destroy(follower);
-                Destroy(door1);
+                if(follower.GetComponent<Follow>().enabled == false)
+                {
+                    CastRay();
+                    if(target == this.gameObject)
+                    {
+                        Destroy(door1);
+                        Destroy(follower);
+                        Debug.Log("destroyed");
+                    }
+                    else
+                    {
+                        Debug.Log("ㅁㄴㅇㄹ");
+                    }
+                }
             }
-            else
-            {
-                Debug.Log("Not yet");
-            }
+        }
+    }
+
+    void CastRay()
+    {
+        target = null;
+        Vector2 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+
+        Ray2D ray = new Ray2D(pos, Vector2.zero);
+        RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction);
+
+        if (hit.collider != null)
+        {
+            Debug.Log(hit.collider.name);
+            target = hit.collider.gameObject;
         }
     }
 }
